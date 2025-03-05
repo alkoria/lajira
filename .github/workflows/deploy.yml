@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Указываем версию Node.js (Expo поддерживает Node.js 18+)
+          node-version: '20'  # Указываем версию Node.js
           cache: 'npm'  # Кэшируем зависимости для ускорения сборки
 
       # Шаг 2: Кэшируем зависимости npm
@@ -35,16 +35,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Шаг 4: Собираем проект 
+      # Шаг 4: Собираем проект
       - name: Build project
-        run: npm run build  # Если есть скрипт build в package.json
+        run: npm run export  # Используем скрипт export для Next.js
 
-      # Шаг 5: Запускаем проект 
-      - name: Start project
-        run: npm start  # Если есть скрипт start в package.json
-
+      # Шаг 5: Деплой на GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out  # Укажите папку, куда собирается проект (например, для Next.js это ./out)
+          publish_dir: ./out  # Указываем папку со статическими файлами
