@@ -1,4 +1,4 @@
-name: Deploy Expo + Next.js App
+name: Lagira
 
 on:
   push:
@@ -32,3 +32,9 @@ jobs:
       # Шаг 5: Запускаем проект 
       - name: Start project
         run: npm start  # Если есть скрипт start в package.json
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out  # Укажите папку, куда собирается проект (например, для Next.js это ./out)
