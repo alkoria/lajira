@@ -10,16 +10,26 @@ jobs:
     runs-on: ubuntu-latest  # Используем последнюю версию Ubuntu
 
     steps:
-      # Шаг 1: Клонируем репозиторий
+      # Шаг 0: Клонируем репозиторий
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Шаг 2: Устанавливаем Node.js
+      # Шаг 1: Устанавливаем Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'  # Указываем версию Node.js (Expo поддерживает Node.js 18+)
           cache: 'npm'  # Кэшируем зависимости для ускорения сборки
+
+      # Шаг 2: Кэшируем зависимости npm
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: npm-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            npm-cache-${{ runner.os }}-
 
       # Шаг 3: Устанавливаем зависимости
       - name: Install dependencies
