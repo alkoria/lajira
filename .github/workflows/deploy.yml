@@ -10,18 +10,18 @@ jobs:
     runs-on: ubuntu-latest  # Используем последнюю версию Ubuntu
 
     steps:
-      # Шаг 0: Клонируем репозиторий
+      # Клонируем репозиторий
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Шаг 1: Устанавливаем Node.js
+      # Устанавливаем Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'  # Указываем версию Node.js
           cache: 'npm'  # Кэшируем зависимости для ускорения сборки
 
-      # Шаг 2: Кэшируем зависимости npm
+      # Кэшируем зависимости npm
       - name: Cache npm dependencies
         uses: actions/cache@v3
         id: npm-cache
@@ -31,17 +31,17 @@ jobs:
           restore-keys: |
             npm-cache-${{ runner.os }}-
 
-      # Шаг 3: Устанавливаем зависимости
+      # Устанавливаем зависимости
       - name: Install dependencies
         run: npm install
 
-      # Шаг 4: Собираем проект
+      # Шаг 5: Собираем проект
       - name: Build project
-        run: npm run export  # Используем скрипт export для Next.js
+        run: expo export:web
 
-      # Шаг 5: Деплой на GitHub Pages
+      # Деплой на GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./web-build  # Указываем папку со статическими файлами
+          publish_dir: ./web-build
