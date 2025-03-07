@@ -1,27 +1,27 @@
-name: Lagira
+name: Lajira
 
 on:
   push:
     branches:
-      - main  # Указываем ветку, при пуше в которую будет запускаться workflow
+      - main
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest  # Используем последнюю версию Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
-      # Клонируем репозиторий
+      # Шаг 1: Клонируем репозиторий
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Устанавливаем Node.js
+      # Шаг 2: Устанавливаем Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Указываем версию Node.js
-          cache: 'npm'  # Кэшируем зависимости для ускорения сборки
+          node-version: '20'
+          cache: 'npm'
 
-      # Кэшируем зависимости npm
+      # Шаг 3: Кэшируем зависимости npm
       - name: Cache npm dependencies
         uses: actions/cache@v3
         id: npm-cache
@@ -31,15 +31,19 @@ jobs:
           restore-keys: |
             npm-cache-${{ runner.os }}-
 
-      # Устанавливаем зависимости
+      # Шаг 4: Устанавливаем зависимости
       - name: Install dependencies
         run: npm install
 
-      # Шаг 5: Собираем проект
+      # Шаг 5: Устанавливаем Expo CLI глобально
+      - name: Install Expo CLI
+        run: npm install -g expo-cli
+
+      # Шаг 6: Собираем проект
       - name: Build project
         run: expo export:web
 
-      # Деплой на GitHub Pages
+      # Шаг 7: Деплой на GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
