@@ -19,8 +19,11 @@
     },
     "web": {
       "bundler": "metro",
-      "output": "web-build",
-      "favicon": "./assets/images/favicon.png"
+      "output": "web-build", // Указываем папку для сборки
+      "favicon": "./assets/images/favicon.png",
+      "build": {
+        "output": "web-build" // Дублируем настройку для совместимости
+      }
     },
     "plugins": [
       "expo-router",
