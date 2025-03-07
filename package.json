@@ -10,9 +10,9 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
-    "build": "expo export:web", // Сборка для веб-версии
-    "export": "expo export:web", // Экспорт статического сайта
-    "deploy": "gh-pages -d web-build" // Деплой на GitHub Pages
+    "build": "expo export:web", 
+    "export": "expo export:web",
+    "deploy": "gh-pages -d web-build"
   },
   "jest": {
     "preset": "jest-expo"
@@ -42,7 +42,7 @@
     "react-native-screens": "~4.4.0",
     "react-native-web": "~0.19.13",
     "react-native-webview": "13.12.5",
-    "gh-pages": "^6.1.0" // Для деплоя на GitHub Pages
+    "gh-pages": "^6.1.0" 
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
