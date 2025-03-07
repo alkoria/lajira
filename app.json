@@ -19,10 +19,10 @@
     },
     "web": {
       "bundler": "metro",
-      "output": "web-build", // Указываем папку для сборки
+      "output": "web-build", 
       "favicon": "./assets/images/favicon.png",
       "build": {
-        "output": "web-build" // Дублируем настройку для совместимости
+        "output": "web-build" 
       }
     },
     "plugins": [
