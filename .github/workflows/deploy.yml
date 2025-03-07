@@ -41,7 +41,7 @@ jobs:
 
       # Шаг 6: Собираем проект
       - name: Build project
-        run: npx expo export:web
+        run: npx expo export
 
       # Шаг 7: Деплой на GitHub Pages
       - name: Deploy to GitHub Pages
