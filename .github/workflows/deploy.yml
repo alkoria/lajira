@@ -35,13 +35,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Шаг 5: Устанавливаем Expo CLI глобально
+      # Шаг 5: Устанавливаем новую версию Expo CLI
       - name: Install Expo CLI
-        run: npm install -g expo-cli
+        run: npm install -g @expo/cli
 
       # Шаг 6: Собираем проект
       - name: Build project
-        run: expo export:web
+        run: npx expo export:web
 
       # Шаг 7: Деплой на GitHub Pages
       - name: Deploy to GitHub Pages
